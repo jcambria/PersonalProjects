@@ -9,7 +9,7 @@ The user is able to interact with the pets to pick an option to play with them, 
 These pets have scales that measure how they are doing in each category.
 Robotic pets do not get hungry or thirsty.
 
-However, They do need oil for maintenance and a boost when their batteries are running low.
+However, robotic pets do need oil for maintenance and a boost when their batteries are running low.
 The user is also given the ability to adopt a pet of their choice 'out' of the shelter and admit a pet of their choice 'in to' the shelter.
 
 Feel free to clone this project to your local machine and have fun!
