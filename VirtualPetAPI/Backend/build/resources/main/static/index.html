@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="landing.css">
+    <title>The Hutt Animal House</title>
+</head>
+<body>
+<h1>Welcome to The Hutt!</h1>
+<div class="header">
+    <img src="The hutt.png" alt="">
+</div>
+<div class="pill-nav">
+    <a class="active" href="#home">Home</a>
+    <a href="allPets&Shelters.html">All Pets & Shelters</a>
+    <a href="About.html">About The Hutt</a>
+</div>
+
+<!--<h1>Welcome to The Hutt!</h1>-->
+
+<h2>Here are some of our favorite pets</h2>
+
+<div class="slideshow-container">
+
+
+    <div class="mySlides fade">
+        <div class="numbertext">1 / 4</div>
+        <img id="images"  src="https://www.rd.com/wp-content/uploads/2019/01/shutterstock_115329475.jpg?resize=768,512" style="width:100%">
+    </div>
+
+    <div class="mySlides fade">
+        <div class="numbertext">2 / 4</div>
+        <img id="images" src="https://www.rd.com/wp-content/uploads/2019/01/shutterstock_673465372.jpg?resize=768,512" style="width:100%">
+    </div>
+
+    <div class="mySlides fade">
+        <div class="numbertext">3 / 4</div>
+        <img id= "images" src="https://i.ytimg.com/vi/fTJ5o_uW3eM/maxresdefault.jpg" style="width:100%">
+    </div>
+    <div class="mySlides fade">
+        <div class="numbertext">4 / 4</div>
+        <img id="images" src="https://www.mypokecard.com/en/Gallery/my/galery/Vgsjwumyrm75.jpg" style="width:100%">
+    </div>
+
+
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+</div>
+<br>
+
+
+<div style="text-align:center">
+    <span class="dot" onclick="currentSlide(1)"></span>
+    <span class="dot" onclick="currentSlide(2)"></span>
+    <span class="dot" onclick="currentSlide(3)"></span>
+    <span class="dot" onclick="currentSlide(4)"></span>
+
+</div>
+</section>
+
+<body>
+<script>
+    const populatePets = () => {
+fetch("https://localhost:8080/pets, {headers: { 'Content-Type': 'application/json'}, method: 'GET', cache: 'default'})
+
+.then((response) => response.json())
+
+.then((responseBody) => {
+
+let PetTable = responseBody.results;
+
+const newRow = document.createElement("tr");
+
+const tableData = document.createElement("td");
+
+}
+</script>
+
+<h2>Pets In Shelters</h2>
+<table class="adoption-table">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Status & Adopt</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>Fluffy</td>
+        <td><p>
+            Hunger <progress id="hunger" value="75" max="100">75%</progress>
+            <p>
+                Thirst <progress id="thirst" value="75" max="100">75%</progress>
+            </p>
+            <p>
+                Boredom <progress id="boredom" value="75" max="100">75%</progress>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </p><button class="button button-adopt">Adopt</button>
+            <button class="button button-admit">Create Pet</button>
+            <button class="button button-play">Play</button>
+            <button class="button button-feed" onclick="scaleHunger()">Feed</button>
+            <button class="button button-drink"
+                    onclick="fetch('http://localhost:8080/shelter/1/pet/fluffy',
+                    {method: 'GET', cache: 'default'})
+                    ">
+                Drink
+            </button>
+            <button class="button button-nap">Nap</button>
+            <button class="button button-clean">Clean</button>
+            <button class="button button-adopt">Oil</button>
+            <script>
+                const drinkButton = () => {
+
+                    fetch("http://localhost:8080/shelter/1/pet/fluffy", {method: 'GET', cache: 'default'})
+
+
+                  }
+            </script>
+
+        </td>
+        </td>
+    </tr>
+    <tr>
+        <td>Max</td>
+        <td><p>
+            Hunger <progress value="75" max="100">75%</progress>
+            <p>
+                Thirst <progress value="75" max="100">75%</progress>
+            </p>
+            <p>
+                Boredom <progress value="75" max="100">75%</progress>
+            </p><button class="button button-adopt">Adopt</button>
+            <button class="button button-admit">Admit</button>
+            <button class="button button-play">Play</button>
+            <button class="button button-feed">Feed</button>
+            <button class="button button-drink">Drink</button>
+            <button class="button button-nap">Nap</button>
+            <button class="button button-clean">Clean</button>
+            <button class="button button-adopt">Oil</button>
+
+        </td>
+
+    </tr>
+    <tr>
+        <td>Buddy</td>
+        <td><p>
+            Hunger <progress value="75" max="100">75%</progress>
+            <p>
+                Thirst <progress value="75" max="100">75%</progress>
+            </p>
+            <p>
+                Boredom <progress value="75" max="100">75%</progress>
+            </p><button class="button button-adopt">Adopt</button>
+            <button class="button button-admit">Admit</button>
+            <button class="button button-play">Play</button>
+            <button class="button button-feed">Feed</button>
+            <button class="button button-drink">Drink</button>
+            <button class="button button-nap">Nap</button>
+            <button class="button button-clean">Clean</button>
+            <button class="button button-adopt">Oil</button>
+
+        </td>
+
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<h2>Pets Waiting to be admitted</h2>
+<table class="admission-table">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Status & Admit</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>John</td>
+        <td><p>
+            Hunger <progress value="75" max="100">75%</progress>
+            <p>
+                Thirst <progress value="75" max="100">75%</progress>
+            </p>
+            <p>
+                Boredom <progress value="75" max="100">75%</progress>
+            </p><button class="button button-admit">Admit</button></td>
+    </tr>
+    <tr>
+        <td>Jane</td>
+        <td><p>
+            Hunger <progress value="75" max="100">75%</progress>
+            <p>
+                Thirst <progress value="75" max="100">75%</progress>
+            </p>
+            <p>
+                Boredom <progress value="75" max="100">75%</progress>
+            </p><button class="button button-admit">Admit</button></td>
+    </tr>
+    <tr>
+        <td>Bob</td>
+        <td><p>
+            Hunger <progress value="75" max="100">75%</progress>
+            <p>
+                Thirst <progress value="75" max="100">75%</progress>
+            </p>
+            <p>
+                Boredom <progress value="75" max="100">75%</progress>
+            </p><button class="button button-admit">Admit</button></td>
+    </tr>
+    </tbody>
+</table>
+<script src="statusBarDemo.js"></script>
+
+<script src="slideshow.js"></script>
+
+</body>
+</html>

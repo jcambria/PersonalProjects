@@ -1,0 +1,107 @@
+body{
+     background-color: rgb(237, 241, 214);
+     margin: 0px;
+
+}
+
+@keyframes textclip {
+  to {
+    background-position: 200% center;
+  }
+}
+
+
+
+h1 {
+    text-align: center;
+    text-transform: uppercase;
+   background-image: linear-gradient(
+     -225deg,
+     #609966
+ 0%,
+ #9DC08B 29%,
+ #40513B 67%,
+ #a6ff9e 100%
+   );
+   background-size: auto auto;
+   background-clip: border-box;
+   background-size: 200% auto;
+
+   background-clip: text;
+
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;
+   animation: textclip 2s linear infinite;
+
+    color: #40513B;
+    padding: 5% 5%;
+    text-align: center;
+    font-size: 50px;
+    }
+
+
+
+    h2 {
+    text-align: center;
+    color: #40513B;
+    }
+
+
+      }
+      #pet_table {
+        border-collapse: collapse;
+        margin-bottom: 20px;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        width: 100%;
+      }
+
+      th {
+        background-color: #4CAF50;
+        color: rgb(255, 255, 255);
+        font-weight: bold;
+        text-align: left;
+        padding: 8px;
+      }
+
+      td {
+        border: 1px solid #ddd;
+        padding: 8px;
+      }
+
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+
+      button {
+        background-color: #40513B
+          display: inline-block;
+        padding: 5px 10px;
+        font-size: 10px;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: #fff;
+        background-color: #40513B;
+        border: none;
+        border-radius: 4px;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        transition: background-color 0.3s ease-in-out;
+      }
+      button:hover{
+      background-color: #609966
+      }
+
+      #pet_table, table, th, td {
+        color: #40513B;
+        border-collapse: collapse;
+        width: 100%;
+        margin-bottom: 20px;
+        border: 1px solid #333;
+      }
+
+
+
+
+
+
+

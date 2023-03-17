@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="landing.css">
+    <title>The Hutt Animal House</title>
+</head>
+<body>
+<h1>Welcome to The Hutt!</h1>
+</body>
+<body>
+<script>
+    const populatePets = () => {
+
+        fetch("http://localhost:8080/pets", {method: 'GET', cache: 'default'})
+        .then((response) => response.json())
+        .then((petTable) => {
+            petTable.map((thisPet) => {
+
+                if(thisPet.type == "Dog" || thisPet.type == "Cat"){
+
+                const table = document.getElementById("pet_table");
+                const mainRow = document.createElement("tr");
+
+                const nameData = document.createElement("td");
+                const hungryLabel = document.createElement("td");
+                const hungryData = document.createElement("progress");
+                const thirstyLabel = document.createElement("td");
+                const thirstyData = document.createElement("progress");
+                const funLabel = document.createElement("td");
+                const funData = document.createElement("progress");
+
+                const playButton = document.createElement("button");
+                const careButton = document.createElement("button");
+                const adoptButton = document.createElement("button");
+
+
+                nameData.innerHTML = thisPet.name +" the "+ thisPet.type+": ";
+                hungryLabel.innerHTML = "hunger";
+                hungryData.value = thisPet.hungry;
+                hungryData.max = 100;
+                hungryData.id = thisPet.name + "_hunger";
+                thirstyLabel.innerHTML = "thirst";
+                thirstyData.value = thisPet.thirsty;
+                thirstyData.max = 100;
+                thirstyData.id = thisPet.name + "_thirst";
+                funLabel.innerHTML = "fun";
+                funData.value = thisPet.fun;
+                funData.max = 100;
+                funData.id = thisPet.name+"_fun";
+
+                playButton.onclick = function() {fetch("http://localhost:8080/play/"+thisPet.name+"", {'method': 'PUT', 'cache': 'default'});
+                window.location.reload();};
+                playButton.innerHTML = "play";
+
+                careButton.onclick = function() {fetch("http://localhost:8080/care/"+thisPet.name+"", {'method': 'PUT', 'cache': 'default'});
+                window.location.reload();};
+                careButton.innerHTML = "care";
+
+                adoptButton.onclick = function() {fetch("http://localhost:8080/pets/"+thisPet.name+"", {'method': 'DELETE', 'cache': 'default'});
+                window.location.reload();};
+                adoptButton.innerHTML = "adopt";
+
+
+
+                mainRow.appendChild(nameData);
+                mainRow.appendChild(hungryLabel);
+                mainRow.appendChild(hungryData);
+                mainRow.appendChild(thirstyLabel);
+                mainRow.appendChild(thirstyData);
+                mainRow.appendChild(funLabel);
+                mainRow.appendChild(funData);
+                mainRow.appendChild(playButton);
+                mainRow.appendChild(careButton);
+                mainRow.appendChild(adoptButton);
+
+                table.appendChild(mainRow);
+                document.body.appendChild(table);
+                }else{
+
+                const table = document.getElementById("pet_table");
+                const mainRow = document.createElement("tr");
+
+                const nameData = document.createElement("td");
+                const hungryLabel = document.createElement("td");
+                const hungryData = document.createElement("progress");
+                const thirstyLabel = document.createElement("td");
+                const thirstyData = document.createElement("progress");
+                const funLabel = document.createElement("td");
+                const funData = document.createElement("progress");
+
+                const playButton = document.createElement("button");
+                const careButton = document.createElement("button");
+                const adoptButton = document.createElement("button");
+
+
+                nameData.innerHTML = thisPet.name +" the "+ thisPet.type+": ";
+                hungryLabel.innerHTML = "oil";
+                hungryData.value = thisPet.oil;
+                hungryData.max = 100;
+                hungryData.id = thisPet.name + "_hunger";
+                thirstyLabel.innerHTML = "maintenance";
+                thirstyData.value = thisPet.maintenance;
+                thirstyData.max = 100;
+                thirstyData.id = thisPet.name + "_thirst";
+                funLabel.innerHTML = "cleanliness";
+                funData.value = thisPet.cleanliness;
+                funData.max = 100;
+                funData.id = thisPet.name+"_fun";
+
+                playButton.onclick = function() {fetch("http://localhost:8080/play/"+thisPet.name+"", {'method': 'PUT', 'cache': 'default'});
+                window.location.reload();};
+                playButton.innerHTML = "play";
+
+                careButton.onclick = function() {fetch("http://localhost:8080/care/"+thisPet.name+"", {'method': 'PUT', 'cache': 'default'});
+                window.location.reload();};
+                careButton.innerHTML = "repair";
+
+                adoptButton.onclick = function() {fetch("http://localhost:8080/pets/"+thisPet.name+"", {'method': 'DELETE', 'cache': 'default'});
+                window.location.reload();};
+                adoptButton.innerHTML = "adopt";
+
+
+
+                mainRow.appendChild(nameData);
+                mainRow.appendChild(hungryLabel);
+                mainRow.appendChild(hungryData);
+                mainRow.appendChild(thirstyLabel);
+                mainRow.appendChild(thirstyData);
+                mainRow.appendChild(funLabel);
+                mainRow.appendChild(funData);
+                mainRow.appendChild(playButton);
+                mainRow.appendChild(careButton);
+                mainRow.appendChild(adoptButton);
+
+                table.appendChild(mainRow);
+                document.body.appendChild(table);
+                }
+
+
+})})}
+
+const tickPets = () => {
+        fetch('http://localhost:8080/tick', {'method': 'PUT', 'cache': 'default'})
+        .then((response) => response.json())
+        .then((petTable) => {
+            petTable.map((thisPet) => {
+                if(thisPet.type == "Dog" || thisPet.type == "Cat"){
+                const hungryData = document.getElementById(thisPet.name+"_hunger");
+                const thirstyData = document.getElementById(thisPet.name+"_thirst");
+                const funData = document.getElementById(thisPet.name+"_fun");
+
+                hungryData.value = thisPet.hungry;
+                thirstyData.value = thisPet.thirsty;
+                funData.value = thisPet.fun;
+                }else{
+                const hungryData = document.getElementById(thisPet.name+"_hunger");
+                const thirstyData = document.getElementById(thisPet.name+"_thirst");
+                const funData = document.getElementById(thisPet.name+"_fun");
+
+                hungryData.value = thisPet.oil;
+                thirstyData.value = thisPet.maintenance;
+                funData.value = thisPet.cleanliness;
+                }
+})})}
+
+const carePets = () => {
+        fetch('http://localhost:8080/care', {'method': 'PUT', 'cache': 'default'});
+        fetch("http://localhost:8080/pets", {method: 'GET', cache: 'default'})
+        .then((response) => response.json())
+        .then((petTable) => {
+            petTable.map((thisPet) => {
+
+                const hungryData = document.getElementById(thisPet.name+"_hunger");
+                const thirstyData = document.getElementById(thisPet.name+"_thirst");
+                const funData = document.getElementById(thisPet.name+"_fun");
+
+                hungryData.value = thisPet.hungry;
+                thirstyData.value = thisPet.thirsty;
+                funData.value = thisPet.fun;
+window.location.reload();
+})})}
+
+const playPets = () => {
+        fetch('http://localhost:8080/play', {'method': 'PUT', 'cache': 'default'});
+        fetch("http://localhost:8080/pets", {method: 'GET', cache: 'default'})
+        .then((response) => response.json())
+        .then((petTable) => {
+            petTable.map((thisPet) => {
+
+                const hungryData = document.getElementById(thisPet.name+"_hunger");
+                const thirstyData = document.getElementById(thisPet.name+"_thirst");
+                const funData = document.getElementById(thisPet.name+"_fun");
+
+                hungryData.value = thisPet.hungry;
+                thirstyData.value = thisPet.thirsty;
+                funData.value = thisPet.fun;
+window.location.reload();
+})})}
+
+
+const admitDog = () => {
+const newPetName = prompt("what is the dogs name?");
+fetch("http://localhost:8080/dog", { headers: { 'Content-Type': 'application/json'},
+            'method':'POST', 'body': JSON.stringify({'name':''+newPetName+''})})
+        .then((response) => response.json())
+        .then((thisPet) => {
+            const table = document.getElementById("pet_table");
+                const mainRow = document.createElement("tr");
+
+                const nameData = document.createElement("td");
+                const hungryData = document.createElement("progress");
+                const thirstyData = document.createElement("progress");
+                const funData = document.createElement("progress");
+
+
+                nameData.innerHTML = thisPet.name;
+                hungryData.value = thisPet.hungry;
+                hungryData.max = 100;
+                hungryData.id = thisPet.name + "_hunger";
+                thirstyData.value = thisPet.thirsty;
+                thirstyData.max = 100;
+                thirstyData.id = thisPet.name + "_thirst";
+                funData.value = thisPet.fun;
+                funData.max = 100;
+                funData.id = thisPet.name+"_fun";
+
+
+
+
+                mainRow.appendChild(nameData);
+                mainRow.appendChild(hungryData);
+                mainRow.appendChild(thirstyData);
+                mainRow.appendChild(funData);
+
+                table.appendChild(mainRow);
+
+                window.location.reload();
+
+
+})}
+
+const admitCat = () => {
+const newPetName = prompt("what is the cats name?");
+fetch("http://localhost:8080/cat", { headers: { 'Content-Type': 'application/json'},
+            'method':'POST', 'body': JSON.stringify({'name':''+newPetName+''})})
+        .then((response) => response.json())
+        .then((thisPet) => {
+            const table = document.getElementById("pet_table");
+                const mainRow = document.createElement("tr");
+
+                const nameData = document.createElement("td");
+                const hungryData = document.createElement("progress");
+                const thirstyData = document.createElement("progress");
+                const funData = document.createElement("progress");
+
+
+                nameData.innerHTML = thisPet.name;
+                hungryData.value = thisPet.hungry;
+                hungryData.max = 100;
+                hungryData.id = thisPet.name + "_hunger";
+                thirstyData.value = thisPet.thirsty;
+                thirstyData.max = 100;
+                thirstyData.id = thisPet.name + "_thirst";
+                funData.value = thisPet.fun;
+                funData.max = 100;
+                funData.id = thisPet.name+"_fun";
+
+                funData.style = "border-radius: 7px; background-color: green;";
+
+
+                mainRow.appendChild(nameData);
+                mainRow.appendChild(hungryData);
+                mainRow.appendChild(thirstyData);
+                mainRow.appendChild(funData);
+
+                table.appendChild(mainRow);
+
+                window.location.reload();
+
+
+})}
+
+const admitRoboDog = () => {
+const newPetName = prompt("what is the dogs name?");
+fetch("http://localhost:8080/robodog", { headers: { 'Content-Type': 'application/json'},
+            'method':'POST', 'body': JSON.stringify({'name':''+newPetName+''})})
+        .then((response) => response.json())
+        .then((thisPet) => {
+            const table = document.getElementById("pet_table");
+                const mainRow = document.createElement("tr");
+
+                const nameData = document.createElement("td");
+                const hungryData = document.createElement("progress");
+                const thirstyData = document.createElement("progress");
+                const funData = document.createElement("progress");
+
+
+                nameData.innerHTML = thisPet.name;
+                hungryData.value = thisPet.oil;
+                hungryData.max = 100;
+                hungryData.id = thisPet.name + "_hunger";
+                thirstyData.value = thisPet.maintenance;
+                thirstyData.max = 100;
+                thirstyData.id = thisPet.name + "_thirst";
+                funData.value = thisPet.cleanliness;
+                funData.max = 100;
+                funData.id = thisPet.name+"_fun";
+
+
+
+
+                mainRow.appendChild(nameData);
+                mainRow.appendChild(hungryData);
+                mainRow.appendChild(thirstyData);
+                mainRow.appendChild(funData);
+
+                table.appendChild(mainRow);
+
+                window.location.reload();
+
+
+})}
+
+const admitRoboCat = () => {
+const newPetName = prompt("what is the dogs name?");
+fetch("http://localhost:8080/robocat", { headers: { 'Content-Type': 'application/json'},
+            'method':'POST', 'body': JSON.stringify({'name':''+newPetName+''})})
+        .then((response) => response.json())
+        .then((thisPet) => {
+            const table = document.getElementById("pet_table");
+                const mainRow = document.createElement("tr");
+
+                const nameData = document.createElement("td");
+                const hungryData = document.createElement("progress");
+                const thirstyData = document.createElement("progress");
+                const funData = document.createElement("progress");
+
+
+                nameData.innerHTML = thisPet.name;
+                hungryData.value = thisPet.oil;
+                hungryData.max = 100;
+                hungryData.id = thisPet.name + "_hunger";
+                thirstyData.value = thisPet.maintenance;
+                thirstyData.max = 100;
+                thirstyData.id = thisPet.name + "_thirst";
+                funData.value = thisPet.cleanliness;
+                funData.max = 100;
+                funData.id = thisPet.name+"_fun";
+
+
+
+
+                mainRow.appendChild(nameData);
+                mainRow.appendChild(hungryData);
+                mainRow.appendChild(thirstyData);
+                mainRow.appendChild(funData);
+
+                table.appendChild(mainRow);
+
+                window.location.reload();
+
+
+})}
+
+/*
+curl -X POST http://localhost:8080/dog -H 'Content-Type: application/json' -d '{"name": "jeff"}'
+curl -X POST http://localhost:8080/cat -H 'Content-Type: application/json' -d '{"name": "doug"}'
+curl -X POST http://localhost:8080/dog -H 'Content-Type: application/json' -d '{"name": "fluffy"}'
+curl -X POST http://localhost:8080/cat -H 'Content-Type: application/json' -d '{"name": "max"}'
+curl -X POST http://localhost:8080/robodog -H 'Content-Type: application/json' -d '{"name": "robojeff"}'
+curl -X POST http://localhost:8080/robocat -H 'Content-Type: application/json' -d '{"name": "robodoug"}'
+*/
+window.onload = populatePets;
+const myTimeout = setTimeout(tickPets, 60000);
+setInterval(myTimeout,60000);
+
+</script>
+<h2>Pets In Shelters</h2>
+<div>
+    <style>
+         #admitDog , .button{
+  background-color: #40513B
+  display: inline-block;
+padding: 12px 24px;
+font-size: 18px;
+font-weight: bold;
+text-transform: uppercase;
+color: #fff;
+background-color: #40513B;
+border: none;
+border-radius: 4px;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+transition: background-color 0.3s ease-in-out;
+
+
+  }
+
+  #admitDog:hover, .button:hover{
+  background-color: #609966
+  }
+
+
+  #admitCat , .button{
+  background-color: #40513B
+  display: inline-block;
+padding: 12px 24px;
+font-size: 18px;
+font-weight: bold;
+text-transform: uppercase;
+color: #fff;
+background-color: #40513B;
+border: none;
+border-radius: 4px;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+transition: background-color .7s ease-in-out;
+}
+
+
+#admitCat:hover, .button:hover{
+  background-color: #609966
+  }
+         #admitRoboDog , .button{
+  background-color: #40513B
+  display: inline-block;
+padding: 12px 24px;
+font-size: 18px;
+font-weight: bold;
+text-transform: uppercase;
+color: #fff;
+background-color: #40513B;
+border: none;
+border-radius: 4px;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+transition: background-color 0.3s ease-in-out;
+
+
+  }
+
+  #admitRoboDog:hover, .button:hover{
+  background-color: #609966
+  }
+         #admitRoboCat , .button{
+  background-color: #40513B
+  display: inline-block;
+padding: 12px 24px;
+font-size: 18px;
+font-weight: bold;
+text-transform: uppercase;
+color: #fff;
+background-color: #40513B;
+border: none;
+border-radius: 4px;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+transition: background-color 0.3s ease-in-out;
+
+
+  }
+
+  #admitRoboCat:hover, .button:hover{
+  background-color: #609966
+  }
+<!--#pet_table {-->
+<!--border: solid #333 5px -->
+<!--}-->
+</style>
+    <button onclick="admitDog()" id="admitDog">admit a dog!</button>
+    <button onclick="admitCat()" id="admitCat">admit a cat!</button>
+    <button onclick="admitRoboDog()" id="admitRoboDog">admit a robot dog!</button>
+    <button onclick="admitRoboCat()" id="admitRoboCat">admit a robot cat!</button>
+    <table id="pet_table"border="1"></table>
+</div>
+</body>
+</html>
