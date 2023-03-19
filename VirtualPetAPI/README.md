@@ -1,11 +1,11 @@
 
 How to use:
-first, create a sql server in git bash to store pet data (would work if an online server is made, but that costs $$$)
+First, create a sql server in git bash to store pet data. (would work if an online server is made, but that costs money...)
 
-the prompt to make the server is:
+To make the server:
 mysql -u root -e "CREATE DATABASE javathehuttapi"
 
-in the app properties:
+In app properties:
 spring.jpa.hibernate.ddl-auto=update - this will keep the pets there when the server is shut down.
 spring.jpa.hibernate.ddl-auto=create-drop - this will get rid of the pets each time the server is reset.
 
@@ -16,4 +16,4 @@ curl -X POST http://localhost:8080/cat -H 'Content-Type: application/json' -d '{
 curl -X POST http://localhost:8080/dog -H 'Content-Type: application/json' -d '{"name": "rex"}'
 curl -X POST http://localhost:8080/cat -H 'Content-Type: application/json' -d '{"name": "fluffy"}'
 
-then enjoy playing around in your virtual pet shelter!
+Then, enjoy playing around in your virtual pet shelter!
